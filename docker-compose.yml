@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  api:
+    build: ./api
+    container_name: api_c
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./api:/app
+      - ./app/node_modules
+  app:
+    build: ./app
+    container_name: app_c
+    ports:
+      - '5173:5173'
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
+      
