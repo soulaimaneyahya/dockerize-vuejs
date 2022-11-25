@@ -8,26 +8,48 @@
         </header>
         <div>
             <div v-if="articles">
-              <article v-for="article in articles" :key="article.id" class="mb-4">
-                <h3>{{ article.title }}</h3>
-                <p class="m-0 p-0">{{ article.lead }}</p>
-                <div class="d-flex align-items-center my-2">
-                  <span v-for="tag in article.tags" :key="tag" class="badge bg-secondary me-2">{{ tag }}</span>
-                </div>
-                <router-link :to="{ name: 'articles.show', params: { id: article.id } }">View</router-link>
-              </article>
+              <ArticlesList :articles="articles" />
             </div>
             <div v-else>
-                <div class="spinner-border" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
+              <p class="placeholder-glow">
+                <span class="placeholder bg-secondary col-6"></span>
+                <span class="placeholder bg-secondary col-12"></span>
+                <span class="d-flex align-items-center my-2">
+                    <span class="btn btn-sm btn-secondary placeholder bg-secondary col-1 me-2"></span>
+                    <span class="btn btn-sm btn-secondary placeholder bg-secondary col-1 me-2"></span>
+                </span>
+                <a href="#" tabindex="-1" class="btn btn-sm btn-primary disabled placeholder col-1" aria-hidden="true"></a>
+              </p>
+              <p class="placeholder-glow">
+                <span class="placeholder bg-secondary col-6"></span>
+                <span class="placeholder bg-secondary col-12"></span>
+                <span class="d-flex align-items-center my-2">
+                    <span class="btn btn-sm btn-secondary placeholder bg-secondary col-1 me-2"></span>
+                    <span class="btn btn-sm btn-secondary placeholder bg-secondary col-1 me-2"></span>
+                </span>
+                <a href="#" tabindex="-1" class="btn btn-sm btn-primary disabled placeholder col-1" aria-hidden="true"></a>
+              </p>
+              <p class="placeholder-glow">
+                <span class="placeholder bg-secondary col-6"></span>
+                <span class="placeholder bg-secondary col-12"></span>
+                <span class="d-flex align-items-center my-2">
+                    <span class="btn btn-sm btn-secondary placeholder bg-secondary col-1 me-2"></span>
+                    <span class="btn btn-sm btn-secondary placeholder bg-secondary col-1 me-2"></span>
+                </span>
+                <a href="#" tabindex="-1" class="btn btn-sm btn-primary disabled placeholder col-1" aria-hidden="true"></a>
+              </p>
             </div>
         </div>
     </div>
 </template>
+
 <script>
 import axios from 'axios'
+import ArticlesList from './partials/ArticlesList.vue';
 export default {
+  components: {
+    ArticlesList,
+  },
   data() {
     return {
       articles: null
